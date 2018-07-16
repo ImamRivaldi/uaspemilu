@@ -28,8 +28,8 @@
                     <th>#</th>
                     <th>NIK</th>
                     <th>Nama</th>
-                    <th>Tanggal Lahir</th>
                     <th>Tempat Lahir</th>
+                    <th>Tanggal Lahir</th>
                     <th>Keterangan</th>
                     <th>Action</th>
                 </tr>
