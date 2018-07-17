@@ -2,10 +2,8 @@
 @section('content')
 
 <div class="panel panel-info">
-    <div class="panel-heading">
-        <center>
-            <h1>Data Pemilih</h1>
-        </center>
+    <div class="col-lg-12 text-center">
+      <h1 class="mt-5">Data Pemilih</h1>
     </div>
     <div class="panel-body">
         <a href="{{ URL('pemilih/create') }}" class="btn btn-raised btn-primary pull-right">Tambah Data</a>

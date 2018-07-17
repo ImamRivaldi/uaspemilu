@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Pemilih;
+use PDF;
 
 class PemiluController extends Controller
 {
@@ -12,9 +13,13 @@ class PemiluController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(Request $request)
     {
-        $pemilih = Pemilih::all();
+        if ($request->get('search')){
+            $pemilih = Pemilih::where('nama', 'LIKE', '%'.$request->get('search').'%')->get();
+        } else {
+            $pemilih = Pemilih::all();
+        }
 		return view('pemilih.show', ['pemilih' => $pemilih]);
     }
 
@@ -81,9 +86,9 @@ class PemiluController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show($id)
+    public function contact()
     {
-        //
+        return view('contact');
     }
 
     /**
@@ -157,5 +162,12 @@ class PemiluController extends Controller
         $pemilih = Pemilih::findOrFail($id)->delete();
 
     	return redirect()->back()->with('success');
+    }
+    
+    public function cetak()
+    {
+        $pemilih = Pemilih::all();
+        $pdf = PDF::loadview('pemilih.cetak', ['pemilih' => $pemilih]);
+        return $pdf->setPaper('a4', 'potrait')->stream();
     }
 }

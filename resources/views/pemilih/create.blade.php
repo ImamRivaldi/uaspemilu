@@ -10,13 +10,13 @@
     <div class="panel-body">
         <a href="{{ Route ('index') }}" class="btn btn-raised btn-danger pull-left">Kembali</a>
         
-        @if (Session::has('after_save'))
+        @if (Session::has('after_update'))
         <div class="row">
             <div class="col-md-12">
-                <div class="alert alert-dismissible alert-{{ Session::get('after_save.alert') }}">
+                <div class="alert alert-dismissible alert-{{ Session::get('after_update.alert') }}">
                     <button type="button" class="close" data-dismiss="alert">x</button>
-                    <strong>{{ Session::get('after_save.title') }}</strong>
-                    <a href="javascript:void(0)" class="alert-link">{{ Session::get('after_save.text-1') }}</a> {{ Session::get('after_save.text-2') }}
+                    <strong>{{ Session::get('after_update.title') }}</strong>
+                    <a href="javascript:void(0)" class="alert-link">{{ Session::get('after_update.text-1') }}</a> {{ Session::get('after_update.text-2') }}
                 </div>
             </div>
         </div>
@@ -29,7 +29,7 @@
                     <form action="{{ URL('pemilih/store') }}" class="from-horizontal" method="post">
                         {{ csrf_field() }}
                         <fieldset>
-                            <legend>TAMBAH DATA PEMILIH</legend>
+                            <legend>UPDATE DATA PEMILIH</legend>
                             <div class="form-group label-floating">
                               <label class="control-label" for="focusedInput2">NIK</label>
                               <input class="form-control" id="focusedInput2" type="text" name="nik">
