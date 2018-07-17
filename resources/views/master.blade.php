@@ -12,6 +12,20 @@
 
     <!-- Bootstrap core CSS -->
     <link href="vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+    <!-- Material Design fonts -->
+        <link rel="stylesheet" href="http://fonts.googleapis.com/css?family=Roboto:300,400,500,700" type="text/css">
+        <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+        <!-- Bootstrap -->
+        <link href="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css" rel="stylesheet">
+        <!-- Bootstrap Material Design -->
+        <link href="{{ asset('bootstrap-material-design-master/dist/css/bootstrap-material-design.css') }}" rel="stylesheet">
+        <link href="{{ asset('bootstrap-material-design-master/dist/css/ripples.min.css') }}" rel="stylesheet">
+        <!-- Dropdown.js -->
+        <link href="//cdn.rawgit.com/FezVrasta/dropdown.js/master/jquery.dropdown.css" rel="stylesheet">
+        <!-- Page style -->
+        <link href="{{ asset('bootstrap-material-design-master/index.css') }}" rel="stylesheet">
+        <!-- jQuery -->
+        <a href="//code.jquery.com/jquery-1.10.2.min.js"></a>
     <!-- Custom styles for this template -->
     <style>
       body {
@@ -32,7 +46,7 @@
     <!-- Navigation -->
     <nav class="navbar navbar-expand-lg navbar-dark bg-dark fixed-top">
       <div class="container">
-        <a class="navbar-brand" href="{{ Route('index') }}">Pemilu 2019</a>
+        <a class="navbar-brand" href="#">Pemilu 2019</a>
         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
           <span class="navbar-toggler-icon"></span>
         </button>
@@ -52,7 +66,7 @@
     </nav>
 
     <!-- Page Content -->
-    <div class="container">
+    <div class="containerr">
       <div class="row">
         <div class="col-lg-12 text-center">
           @yield('content')

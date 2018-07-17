@@ -4,7 +4,6 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Pemilih;
-use PDF;
 
 class PemiluController extends Controller
 {
@@ -15,12 +14,8 @@ class PemiluController extends Controller
      */
     public function index(Request $request)
     {
-        if ($request->get('search')){
-            $pemilih = Pemilih::where('nama', 'LIKE', '%'.$request->get('search').'%')->get();
-        } else {
-            $pemilih = Pemilih::all();
-        }
-		return view('pemilih.show', ['pemilih' => $pemilih]);
+        $pemilih = Pemilih::all();
+        return view('pemilih.show', ['pemilih' =>$pemilih]);
     }
 
     /**
@@ -41,43 +36,15 @@ class PemiluController extends Controller
      */
     public function store(Request $request)
     {
-        $validate = \Validator::make($request->all(),[
-            'nik' => 'required',
-            'nama' => 'required',
-            'tmpt_lahir' => 'required',
-            'tgl_lahir' => 'required',
-            'keterangan' => 'required'
-        ],
-        
-        $after_save = [
-            'alert' => 'Danger',
-            'title' => 'Wait!',
-            'text-1' => 'Ada kesalahan',
-            'text-2' => 'Try again.'
-        ]);
-        
-        if($validate->fails()){
-            return redirect()->back()->with('after_save', $after_save);
-        }
-        
-        $after_save = [
-            'alert' => 'Success',
-            'title' => 'Good Job!',
-            'text-1' => 'Tambah Lagi',
-            'text-2' => 'Atau Kembali.'
-        ];
-        
-        $data = [
-            'nik' => $request->nik,
-            'nama' => $request->nama,
-            'tmpt_lahir' => $request->tmpt_lahir,
-            'tgl_lahir' => $request->tgl_lahir,
-            'keterangan' => $request->keterangan
-        ];
-        
-        $store = Pemilih::insert($data);
-        
-        return redirect()->back()->with('after_save', $after_save);
+        $pemilih = new Pemilih;
+        $pemilih->nik = $request->nik;
+  		$pemilih->nama = $request->nama;
+  		$pemilih->tmpt_lahir = $request->tmpt_lahir;
+  		$pemilih->tgl_lahir = $request->tgl_lahir;
+        $pemilih->keterangan = $request->keterangan;
+  		$pemilih->save();
+
+  		return redirect(Route('create'))->with('alert-success','Berhasil Menambahkan Data!');
     }
 
     /**
@@ -112,43 +79,15 @@ class PemiluController extends Controller
      */
     public function update(Request $request, $id)
     {
-        $validate = \Validator::make($request->all(),[
-            'nik' => 'required',
-            'nama' => 'required',
-            'tmpt_lahir' => 'required',
-            'tgl_lahir' => 'required',
-            'keterangan' => 'required'
-        ],
-        
-        $after_update = [
-            'alert' => 'Danger',
-            'title' => 'Wait!',
-            'text-1' => 'Ada kesalahan',
-            'text-2' => 'Try again.'
-        ]);
-        
-        if($validate->fails()){
-            return redirect()->back()->with('after_update', $after_update);
-        }
-        
-        $after_update = [
-            'alert' => 'Success',
-            'title' => 'Good Job!',
-            'text-1' => 'Update Data Berhasil',
-            'text-2' => ''
-        ];
-        
-        $data = [
-            'nik' => $request->nik,
-            'nama' => $request->nama,
-            'tmpt_lahir' => $request->tmpt_lahir,
-            'tgl_lahir' => $request->tgl_lahir,
-            'keterangan' => $request->keterangan
-        ];
-        
-        $update = Pemilih::where('id', $id)->update($data);
-        
-        return redirect()->back()->with('after_update', $after_update);
+        $pemilih = Pemilih::findOrFail($id);
+        $pemilih->nik = $request->nik;
+  		$pemilih->nama = $request->nama;
+  		$pemilih->tmpt_lahir = $request->tmpt_lahir;
+  		$pemilih->tgl_lahir = $request->tgl_lahir;
+        $pemilih->keterangan = $request->keterangan;
+  		$pemilih->save();
+
+  		return redirect(Route('index'))->with('alert-success','Berhasil Mengubah Data!');
     }
 
     /**
@@ -162,12 +101,5 @@ class PemiluController extends Controller
         $pemilih = Pemilih::findOrFail($id)->delete();
 
     	return redirect()->back()->with('success');
-    }
-    
-    public function cetak()
-    {
-        $pemilih = Pemilih::all();
-        $pdf = PDF::loadview('pemilih.cetak', ['pemilih' => $pemilih]);
-        return $pdf->setPaper('a4', 'potrait')->stream();
     }
 }

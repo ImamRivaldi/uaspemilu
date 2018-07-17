@@ -7,4 +7,3 @@ Route::get('pemilih/destroy/{id}', 'PemiluController@destroy')->name('destroy');
 Route::get('pemilih/edit/{id}', 'PemiluController@edit')->name('edit');
 Route::post('pemilih/update/{id}', 'PemiluController@update')->name('update');
 Route::get('contact', 'PemiluController@contact')->name('contact');
-Route::get('{search?}', 'PemiluController@index')->name('index');

@@ -96,6 +96,7 @@ a:focus .material-icons {
 }
 .form-horizontal label {
   text-align: right;
+    align-content: center;
 }
 .form-horizontal label.control-label {
   margin: 0;
@@ -2238,6 +2239,7 @@ legend {
   border-bottom: 1px solid rgba(0, 0, 0, 0.1);
   float: right;
 }
+/*
 .navbar {
   background-color: #009688;
   border: 0;
@@ -2703,6 +2705,7 @@ fieldset[disabled] .navbar .btn-link:focus {
 .navbar-inverse {
   background-color: #3f51b5;
 }
+*/
 @media (max-width: 1199px) {
   .navbar .navbar-brand {
     height: 50px;
