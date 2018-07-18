@@ -12,10 +12,10 @@ class PemiluController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index(Request $request)
+    public function index()
     {
         $pemilih = Pemilih::all();
-        return view('pemilih.show', ['pemilih' =>$pemilih]);
+        return view('pemilih.show', ['pemilih' => $pemilih]);
     }
 
     /**
@@ -25,9 +25,9 @@ class PemiluController extends Controller
      */
     public function create()
     {
-        $pemilih = Pemilih::all();
-		return view('pemilih.create', ['pemilih' => $pemilih]);
+        return view('pemilih.create');
     }
+
     /**
      * Store a newly created resource in storage.
      *
@@ -38,13 +38,13 @@ class PemiluController extends Controller
     {
         $pemilih = new Pemilih;
         $pemilih->nik = $request->nik;
-  		$pemilih->nama = $request->nama;
-  		$pemilih->tmpt_lahir = $request->tmpt_lahir;
-  		$pemilih->tgl_lahir = $request->tgl_lahir;
+        $pemilih->nama = $request->nama;
+        $pemilih->tmpt_lahir = $request->tmpt_lahir;
+        $pemilih->tgl_lahir = $request->tgl_lahir;
         $pemilih->keterangan = $request->keterangan;
-  		$pemilih->save();
-
-  		return redirect(Route('create'))->with('alert-success','Berhasil Menambahkan Data!');
+        $pemilih->save();
+        
+        return redirect(Route('index'))->with('alert-success','Berhasil Menambahkan Data!');
     }
 
     /**
@@ -53,9 +53,9 @@ class PemiluController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function contact()
+    public function show($id)
     {
-        return view('contact');
+        //
     }
 
     /**
@@ -67,7 +67,7 @@ class PemiluController extends Controller
     public function edit($id)
     {
         $pemilih = Pemilih::findOrFail($id);
-		return view('pemilih.edit', ['pemilih' => $pemilih]);
+        return view('pemilih.edit', ['pemilih' => $pemilih]);
     }
 
     /**
@@ -81,13 +81,13 @@ class PemiluController extends Controller
     {
         $pemilih = Pemilih::findOrFail($id);
         $pemilih->nik = $request->nik;
-  		$pemilih->nama = $request->nama;
-  		$pemilih->tmpt_lahir = $request->tmpt_lahir;
-  		$pemilih->tgl_lahir = $request->tgl_lahir;
+        $pemilih->nama = $request->nama;
+        $pemilih->tmpt_lahir = $request->tmpt_lahir;
+        $pemilih->tgl_lahir = $request->tgl_lahir;
         $pemilih->keterangan = $request->keterangan;
-  		$pemilih->save();
-
-  		return redirect(Route('index'))->with('alert-success','Berhasil Mengubah Data!');
+        $pemilih->save();
+        
+        return redirect(Route('index'))->with('alert-success','Berhasil Mengubah Data!');
     }
 
     /**
@@ -98,8 +98,20 @@ class PemiluController extends Controller
      */
     public function destroy($id)
     {
-        $pemilih = Pemilih::findOrFail($id)->delete();
-
-    	return redirect()->back()->with('success');
+        $pemilih = Pemilih::findOrFail($id);
+        $pemilih->delete();
+        return redirect(Route('index'))->with('alert-success','Berhasil Menghapus Data!');
     }
+    
+    /**
+     * Display the specified resource.
+     *
+     * @param  int  $id
+     * @return \Illuminate\Http\Response
+     */
+    public function contact()
+    {
+        return view('contact');
+    }
+
 }

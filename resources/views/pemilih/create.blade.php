@@ -10,28 +10,29 @@
             <div class="col-md-8">
                 <form action="{{ Route('create') }}" class="from-horizontal" method="post">
                     <fieldset>
+                        @csrf
                          <div class="form-group label-floating">
-                          <label class="control-label" for="focusedInput2">NIK</label>
+                          <label class="control-label" for="nik">NIK</label>
                           <input class="form-control" id="focusedInput2" type="text" name="nik">
                           <p class="help-block">Masukan data dengan benar.</p>
                         </div>
                         <div class="form-group label-floating">
-                          <label class="control-label" for="focusedInput2">Nama</label>
+                          <label class="control-label" for="nama">Nama</label>
                           <input class="form-control" id="focusedInput2" type="text" name="nama">
                           <p class="help-block">Masukan data dengan benar.</p>
                         </div>
                         <div class="form-group label-floating">
-                          <label class="control-label" for="focusedInput2">Tempat Lahir</label>
+                          <label class="control-label" for="tmpt_lahir">Tempat Lahir</label>
                           <input class="form-control" id="focusedInput2" type="text" name="tmpt_lahir">
                           <p class="help-block">Masukan data dengan benar.</p>
                         </div>
                         <div class="form-group label-floating">
-                          <label class="control-label" for="focusedInput2">Tanggal Lahir</label>
+                          <label class="control-label" for="tgl_lahir">Tanggal Lahir</label>
                           <input class="form-control" id="focusedInput2" type="date" name="tgl_lahir">
                           <p class="help-block">Masukan data dengan benar.</p>
                         </div>
                         <div class="form-group label-floating">
-                          <label class="control-label" for="select111">Keterangan</label>
+                          <label class="control-label" for="keterangan">Keterangan</label>
                           <div class="col-md-12">
                             <select id="select111" class="form-control" name="keterangan">
                                 <option value="Tetap">Tetap</option>
